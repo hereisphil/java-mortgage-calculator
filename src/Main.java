@@ -10,15 +10,21 @@ public class Main {
             // Mortgage Calculator Program
             try {
                 // Get Principal
-                System.out.println("Enter your loan as a whole number, i.e. 300000");
+                System.out.println("Enter your loan as a whole number, ($1K - $1M)");
                 System.out.print("Principal: ");
                 int principal = scanner.nextInt();
+                // make sure input is valid
+                if (principal < 1000 || principal > 1000000)
+                    throw new InputMismatchException();
 
                 // Get down payment
                 System.out.println();
                 System.out.println("Enter your down payment as a whole number, i.e. 20000");
                 System.out.print("Down payment: ");
                 int downPayment = scanner.nextInt();
+                // make sure input is valid
+                if (downPayment >= principal)
+                    throw new InputMismatchException();
 
                 // Calculate new principal
                 principal -= downPayment;
@@ -28,6 +34,9 @@ public class Main {
                 System.out.println("Enter interest as a decimal, i.e. 4.95");
                 System.out.print("Annual Interest Rate: ");
                 double annualInterestPercentage = scanner.nextDouble();
+                // make sure input is valid
+                if (annualInterestPercentage <= 0.0 || annualInterestPercentage > 25.0)
+                    throw new InputMismatchException();
 
                 // Convert to monthly interest rate
                 double monthlyInterestRate = annualInterestPercentage / 100 / 12;
@@ -37,6 +46,9 @@ public class Main {
                 System.out.println("Enter loan length as a whole number, i.e. 25");
                 System.out.print("Period (Years): ");
                 int yearlyPeriod = scanner.nextInt();
+                // make sure input is valid
+                if (yearlyPeriod <= 0 || yearlyPeriod > 50)
+                    throw new InputMismatchException();
 
                 // Convert to months
                 int monthlyPeriod = yearlyPeriod * 12;
@@ -54,7 +66,7 @@ public class Main {
                 runProgram = false; // end program
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter numbers only.");
+                System.out.println("Invalid input. Please enter valid numbers.");
                 scanner.nextLine(); // clear bad input
                 // loop repeats automatically
             } // end catch
