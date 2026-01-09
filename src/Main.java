@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    static void main(String[] args){
+    public static void main(String[] args){
         boolean runProgram = true;
         while(runProgram) {
             Scanner scanner = new Scanner(System.in);
